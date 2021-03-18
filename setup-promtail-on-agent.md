@@ -1,4 +1,4 @@
-#h4 step 1: use root
+#### step 1: use root
 
 ```
   cd /opt/
@@ -7,10 +7,14 @@
   unzip promtail-linux-amd64.zip 
   
 ```
-#h4 step 2: edit file promtail-local-config.yaml, set loki url server
+#### step 2: edit file promtail-local-config.yaml, set loki url server
 
-#4 step 3: create service systemd
+#### step 3: create service systemd
 
 ```
-  
+  cd /opt/
+  wget https://raw.githubusercontent.com/tuanna08/document-loki-promtail/main/loki_agent_promtail.service
+  cp /opt/loki_agent_promtail.service /etc/systemd/system/loki_agent_promtail.service
+  systemctl daemon-reload
+  systemctl enable --now loki_agent_promtail.service
 ```
