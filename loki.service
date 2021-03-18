@@ -1,0 +1,18 @@
+[Unit]
+Description=loki service
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+RuntimeDirectory=loki
+WorkingDirectory=/root/go-workspace/loki/src/github.com/grafana/loki/
+ExecStart=/root/go-workspace/loki/src/github.com/grafana/loki/cmd/loki/loki --config.file cmd/loki/loki-local-config.yaml
+Restart=always
+PrivateTmp=true
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
