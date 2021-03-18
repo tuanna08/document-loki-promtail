@@ -1,0 +1,45 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+  grpc_server_max_recv_msg_size: 6291456
+  grpc_server_max_send_msg_size: 6291456
+
+positions:
+  filename: /opt/positions.yaml
+
+clients:
+  - url: http://10.21.31.253:3100/loki/api/v1/push
+
+
+scrape_configs:
+- job_name: foodbookhaproxylog
+  static_configs:
+  - targets:
+      - localhost
+    labels:
+      job: foodbookhaproxylog
+      __path__: /var/log/haproxy.log
+
+  pipeline_stages:
+  - match:
+      selector: '{job="foodbookhaproxylog"}'
+      stages:
+      - regex:
+          expression: '^(?P<time_fmt>[\w\d \d:\d:\d]+) (?P<instance>[\w\-]+) (?P<pid>[\w\[\]]+): (?P<src_ip>[\w.\[\]]+) (?P<backend_name>[\w.]+) (?P<dest_ip>[\w.\[\]]+) (?P<dest_port>[\d]+) (?P<status>[\d]+) (?P<byte>[\d]+) (?P<TR>[\d]+)\/(?P<Tw>[\d]+)\/(?P<Tc>[\d]+)\/(?P<Tr>[\d]+)\/(?P<Ta>[\d]+) (?P<method>[\w]+) (?P<path>[\w\/._-]+) (?P<param>[\w?=&\-]+|) (?P<http_version>[\w\/\d.]+)'
+      - labels:
+          #time_fmt:
+          instance:
+          #pid:
+          src_ip:
+          backend_name:
+          dest_ip:
+          dest_port:
+          status:
+          byte:
+          TR:
+          Tw:
+          Tc:
+          Tr:
+          Ta:
+          method:
+          path: 
