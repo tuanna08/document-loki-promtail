@@ -1,0 +1,18 @@
+[Unit]
+Description=loki service
+After=syslog.target
+
+[Service]
+Type=simple
+User=root
+RuntimeDirectory=opt
+WorkingDirectory=/opt/
+ExecStart=/opt/promtail-linux-amd64 --config.file /opt/promtail-local-config.yaml
+Restart=always
+PrivateTmp=true
+RestartSec=360
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
