@@ -3,7 +3,7 @@
 ```
   cd /opt/
   wget https://github.com/grafana/loki/releases/download/v2.0.0/promtail-linux-amd64.zip
-  wget https://github.com/tuanna08/document-loki-promtail/blob/main/promtail-local-config.yaml
+  https://raw.githubusercontent.com/tuanna08/document-loki-promtail/main/promtail-local-config.yaml
   unzip promtail-linux-amd64.zip 
   
 ```
