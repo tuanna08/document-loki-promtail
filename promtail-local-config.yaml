@@ -12,17 +12,17 @@ clients:
 
 
 scrape_configs:
-- job_name: foodbookhaproxylog
+- job_name: fabihaproxylog
   static_configs:
   - targets:
       - localhost
     labels:
-      job: foodbookhaproxylog
+      job: fabihaproxylog
       __path__: /var/log/haproxy.log
 
   pipeline_stages:
   - match:
-      selector: '{job="foodbookhaproxylog"}'
+      selector: '{job="fabihaproxylog"}'
       stages:
       - regex:
           expression: '^(?P<time_fmt>[\w\d \d:\d:\d]+) (?P<instance>[\w\-]+) (?P<pid>[\w\[\]]+): (?P<src_ip>[\w.\[\]]+) (?P<backend_name>[\w.]+) (?P<dest_ip>[\w.\[\]]+) (?P<dest_port>[\d]+) (?P<status>[\d]+) (?P<byte>[\d]+) (?P<TR>[\d]+)\/(?P<Tw>[\d]+)\/(?P<Tc>[\d]+)\/(?P<Tr>[\d]+)\/(?P<Ta>[\d]+) (?P<method>[\w]+) (?P<path>[\w\/._-]+) (?P<param>[\w?=&\-]+|) (?P<http_version>[\w\/\d.]+)'
