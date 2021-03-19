@@ -8,6 +8,7 @@
   
 ```
 #### step 2: edit file promtail-local-config.yaml, set loki url server
+- fomart log ha: ``` log-format "%ci %b %si %sp %ST %B %TR/%Tw/%Tc/%Tr/%Ta %HM %HP %HQ %HV" ```
 
 #### step 3: create service systemd
 
