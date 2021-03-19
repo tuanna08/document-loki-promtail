@@ -8,7 +8,7 @@ positions:
   filename: /opt/positions.yaml
 
 clients:
-  - url: http://10.21.31.253:3100/loki/api/v1/push
+  - url: http://10.21.136.27:3100/loki/api/v1/push
 
 
 scrape_configs:
